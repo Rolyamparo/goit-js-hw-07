@@ -6,10 +6,10 @@ console.log(galleryItems);
 const galleryContainer = document.querySelector("ul.gallery");
 
 function createGalleryItem(array) {
-    array.map(({ preview, original, description }) => {
+    return array.map(({ preview, original, description }) => {
         return `
-        <a class="gallery_item" href="${original}">
-            <img class="gallery_image" src="${preview}" alt="${description}" />
+        <a class="gallery__item" href="${original}">
+            <img class="gallery__image" src="${preview}" alt="${description}" />
         </a>
         `;
     })
@@ -17,3 +17,6 @@ function createGalleryItem(array) {
 }
 const photosMarkup = createGalleryItem(galleryItems);
 galleryContainer.insertAdjacentHTML("beforeend", photosMarkup);
+
+const galleryHandler = new SimpleLightbox(".gallery a", { captionsData: "alt", captionsDelay: 250 });
+galleryHandler.on("show.simplelightbox");
